@@ -1,0 +1,22 @@
+// Prisma schema для психологического профайлинга
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Сессия прохождения теста
+model TestSession {
+  id        String   @id @default(cuid())
+  name      String
+  age       Int
+  phone     String
+  // Пол пользователя: "male" | "female"
+  gender    String
+  answers   Json?    // массив ответов: [1, 2, 0, ...] (0=Нет, 1=Возможно, 2=Да)
+  result    Json?    // полные проценты по всем психотипам и архетипам
+  createdAt DateTime @default(now())
+}
