@@ -8,11 +8,11 @@
 import { QUESTIONS } from "./questions"
 import {
   PSYCHOTYPES,
-  ARCHETYPES,
+  ARCHETYPES as ARCHETYPES_RAW,
   type AnswerOption,
   type Gender,
-  MALE_ARCHETYPES,
-  FEMALE_ARCHETYPES,
+  MALE_ARCHETYPES as MALE_RAW,
+  FEMALE_ARCHETYPES as FEMALE_RAW,
 } from "./constants"
 
 const TOTAL_QUESTIONS = QUESTIONS.length
@@ -71,6 +71,11 @@ export function calculateResult(answers: AnswerOption[]): FullResult {
     top3Psychotypes: top3,
   }
 }
+
+/** Сделаем массивы архетипов литеральными для TypeScript */
+const MALE_ARCHETYPES = MALE_RAW as readonly (typeof MALE_RAW[number])[]
+const FEMALE_ARCHETYPES = FEMALE_RAW as readonly (typeof FEMALE_RAW[number])[]
+const ARCHETYPES = ARCHETYPES_RAW as readonly (typeof ARCHETYPES_RAW[number])[]
 
 /** Выбор основного архетипа по полу пользователя (из заданных списков). */
 export function pickMainArchetypeByGender(
