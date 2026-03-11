@@ -15,7 +15,7 @@ interface PdfData {
 export function downloadResultsPdf(data: PdfData) {
   const doc = new jsPDF({ unit: "mm", format: "a4" })
   const pageWidth = doc.internal.pageSize.getWidth()
-const pageHeight = doc.internal.pageSize.getHeight() // если понадобится
+  const pageHeight = doc.internal.pageSize.getHeight()
   const margin = 20
 
   // Заголовок / логотип
@@ -46,7 +46,7 @@ const pageHeight = doc.internal.pageSize.getHeight() // если понадоб�
   doc.text(`Возраст: ${data.age}`, margin, y)
   y += 6
   doc.text(`Телефон: ${data.phone}`, margin, y)
-   y += 6
+  y += 6
   doc.text(`Пол: ${data.gender === "male" ? "Мужской" : "Женский"}`, margin, y)
   y += 14
 
@@ -83,7 +83,7 @@ const pageHeight = doc.internal.pageSize.getHeight() // если понадоб�
   doc.text(
     `Сформировано: ${new Date().toLocaleString("ru-RU")}`,
     pageWidth / 2,
-    doc.getPageHeight(doc.getInternalPageSize(1)) - 10,
+    pageHeight - 10,
     { align: "center" }
   )
 
