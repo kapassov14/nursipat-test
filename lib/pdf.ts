@@ -14,7 +14,8 @@ interface PdfData {
 /** Генерация и скачивание PDF с результатами (шаблон с логотипом и оформлением) */
 export function downloadResultsPdf(data: PdfData) {
   const doc = new jsPDF({ unit: "mm", format: "a4" })
-  const pageWidth = doc.getPageWidth(doc.getInternalPageSize(1))
+  const pageWidth = doc.internal.pageSize.getWidth()
+const pageHeight = doc.internal.pageSize.getHeight() // если понадобится
   const margin = 20
 
   // Заголовок / логотип
